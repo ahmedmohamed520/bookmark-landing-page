@@ -422,6 +422,47 @@ a {
 }
 /* Footer End */
 
+/* Media queries Start */
+.btn--red {
+    color: #fff;
+    padding: 0.75rem 2rem;
+}
+/* .col-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+} */
+/* Header Start */
+/* Navbar Start */
+.header {
+    padding: 0 6rem;
+}
+.nav {
+    height: 8rem;
+    padding: 2rem 0;
+}
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.menu-toggler {
+    display: none;
+}
+
+/* Navbar End */
+.header-image {
+    padding-bottom: 2rem;
+}
+.header-pattern {
+    width: 90vw;
+    right: -15vw;
+}
+
+/* Header End */
+
+/* Media queries End */
+
 /* Keyframes Starts */
 
 @keyframes move-right {
