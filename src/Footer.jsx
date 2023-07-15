@@ -1,11 +1,12 @@
 import React from "react";
 import { links, socials } from "./data";
+import Logo from "./logo";
 
 const Footer = () => {
     return (
         <footer className="footer">
-            <div className="logo">
-                <img src="images/logo-bookmark.svg" alt="Bookmark" loading="lazy" />
+            <div className="footer-logo">
+                <Logo />
             </div>
             <ul className="footer-links">
                 {links.map((link) => (
@@ -18,11 +19,13 @@ const Footer = () => {
             </ul>
             <ul className="social-links">
                 {socials.map((link) => {
-                    <li key={link.id}>
-                        <a href={link.url} className="soacial-link">
-                            <img src={link.icon} alt={link.alt} loading="lazy" />
-                        </a>
-                    </li>;
+                    return (
+                        <li key={link.id}>
+                            <a href={link.url} className="social-link">
+                                <img src={link.icon} alt={link.alt} loading="lazy" />
+                            </a>
+                        </li>
+                    );
                 })}
             </ul>
         </footer>

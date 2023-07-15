@@ -31,6 +31,7 @@ const App = () => {
                             alt="a screen with some content to illustrate how the extention works"
                             loading="lazy"
                         />
+                        <div className="header-pattern"></div>
                     </div>
                     <div className="header-info">
                         <h1 className="heading-primary">A Simple Bookmark Manager</h1>
@@ -52,7 +53,7 @@ const App = () => {
                 <section className="features-section">
                     <div className="section-intro">
                         <h2 className="heading-secondary">Features</h2>
-                        <p className="leading">
+                        <p className="lead">
                             Our aim is to make it quick and easy for you to access you favourite websites.
                             Your bookmarks sync between your devices so you can access them on the go.
                         </p>
@@ -67,18 +68,9 @@ const App = () => {
                                     activeTab={activeTab}
                                 />
                             ))}
-                            <div className="tabbed-btn-container">
-                                <button className="tabbed-btn tabbed-btn--active">Simple Bookmarking</button>
-                            </div>
-                            <div className="tabbed-btn-container">
-                                <button className="tabbed-btn">Speedy Searching</button>
-                            </div>
-                            <div className="tabbed-btn-container">
-                                <button className="tabbed-btn">Easy Sharing</button>
-                            </div>
                         </div>
                         <div className="tabbed-content">
-                            {tabsContent.forEach((item) => (
+                            {tabsContent.map((item) => (
                                 <TabContent
                                     key={item.id}
                                     {...item}
@@ -94,7 +86,7 @@ const App = () => {
                 <section className="download-section">
                     <div className="section-intro">
                         <h2 className="heading-secondary">Download the extention</h2>
-                        <p className="leading">
+                        <p className="lead">
                             We've got more browsers in the pipeline. Please do let us know if you've got a
                             favourite you'd like us to prioritize.
                         </p>
@@ -108,14 +100,16 @@ const App = () => {
                 <section className="faq-section">
                     <div className="section-intro">
                         <h2 className="heading-secondary">Frequently Asked Questions</h2>
-                        <p className="leading">
+                        <p className="lead">
                             Here are some of our FAQs. If you have any other questions you'd like answered
                             please feel free to email us.
                         </p>
                     </div>
                     {/* Accordion */}
                     <Accordion activeAccordion={activeAccordion} setActiveAccordion={setActiveAccordion} />
-                    <button className="btn">More Info</button>
+                    <div className="accordion-center">
+                        <button className="btn ">More Info</button>
+                    </div>
                 </section>
                 {/* FAQ Section Ends */}
                 {/* Subsction Form Start */}
@@ -124,13 +118,13 @@ const App = () => {
                         <p>35,000 Already joined</p>
                         <h3>Stay up-to-date with what we're doing</h3>
                     </div>
-                    \
+
                     <form onSubmit={formSubmitHandler} className="subscription-form">
                         <div className="form-control">
-                            <input placeholder="example@email.com" ref={emailRef} type="text" />
+                            <input placeholder="Enter your email address" ref={emailRef} type="text" />
                             <p>Whoops, make sure it's an email</p>
                         </div>
-                        <button className="btn btn-red">Contact Us</button>
+                        <button className="btn btn--red">Contact Us</button>
                     </form>
                 </section>
                 {/* Subsction Form End */}

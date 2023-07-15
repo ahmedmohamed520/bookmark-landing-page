@@ -7,6 +7,7 @@ const Accordion = ({ activeAccordion, setActiveAccordion }) => {
             {accordion.map(({ id, question, answer }) => (
                 <li
                     onClick={() => {
+                        if (id === activeAccordion) return setActiveAccordion(0);
                         setActiveAccordion(id);
                     }}
                     key={id}
