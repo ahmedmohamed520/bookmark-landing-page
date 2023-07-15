@@ -10,6 +10,7 @@ const TabContent = ({ id, image, alt, title, desc, activeTab, setActiveTab }) =>
             <div className="feature-desc">
                 <h2 className="heading-secondary">{title}</h2>
                 <p className="lead">{desc}</p>
+                <button className="btn">More Info</button>
             </div>
         </div>
     );
