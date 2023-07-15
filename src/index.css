@@ -649,8 +649,12 @@ a {
         display: flex;
         gap: 2.5rem;
     }
+    .footer-logo {
+        margin-bottom: 0;
+    }
     .footer-links {
         flex-direction: row;
+        margin-bottom: 0;
     }
     .footer-link {
         color: var(--clr-gray-1);
