@@ -129,8 +129,10 @@ a {
     display: flex;
     flex-direction: column;
 
+    transform: translateX(-100%);
+    opacity: 0;
     /* Animate */
-    animation: move-right 100ms ease-out;
+    animation: move-right 100ms ease-out forwards;
 }
 .mobile-menu-header {
     padding-bottom: 2rem;
@@ -263,6 +265,9 @@ a {
 }
 .feature-desc {
 }
+.feature-desc .btn {
+    display: none;
+}
 /* features-section End */
 
 /* Download Starts */
@@ -307,6 +312,8 @@ a {
 .accordion-item {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
 }
 .accordion-btn {
     display: flex;
@@ -323,6 +330,7 @@ a {
     border: none;
     cursor: pointer;
     transition: 0.2s all;
+    user-select: none;
 }
 .accordion-item-active .accordion-btn button {
     transform: rotateZ(-180deg);
@@ -336,10 +344,19 @@ a {
     line-height: 1.6;
     margin-top: 2rem;
     display: none;
+    transition: 0.2s all;
+    transform: scaleY(0);
+    transform-origin: top;
 }
 
 .accordion-item-active .accordion-answer {
     display: block;
+    animation: reveal 200ms linear forwards;
+}
+@keyframes reveal {
+    to {
+        transform: scaleY(1);
+    }
 }
 .accordion-center {
     display: flex;
@@ -378,12 +395,32 @@ a {
 .form-control p {
     display: none;
 }
+.error {
+    position: relative;
+}
+.error p {
+    display: block;
+    background-color: var(--clr-red);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 0.25rem;
+    padding-top: 0.5rem;
+    border-radius: 4px;
+    position: absolute;
+    bottom: -18px;
+    width: 100%;
+}
 .form-control input {
     padding: 1rem;
     border-radius: 8px;
     font: inherit;
-    border: none;
+    border: 2px solid transparent;
     width: 100%;
+    position: relative;
+    z-index: 5;
+}
+.error input {
+    border: 2px solid var(--clr-red);
 }
 .form-control input::placeholder {
     color: rgba(0, 0, 0, 0.2);
@@ -485,6 +522,10 @@ a {
         width: 90vw;
         height: 300px;
     }
+
+    .feature-desc .btn {
+        display: block;
+    }
     /* Features End */
     /* Download Start */
     .download-section {
@@ -531,6 +572,28 @@ a {
 
 /* Desktop Start */
 @media screen and (min-width: 960px) {
+    .btn {
+        border: 2px solid transparent;
+        transition: 0.2s all ease-in;
+        padding: 1rem 1.5rem;
+    }
+    .btn:hover,
+    .btn:focus {
+        background-color: transparent;
+        border: 2px solid var(--clr-gray-2);
+        color: var(--clr-gray-2);
+    }
+    .btn--red {
+        border: 2px solid var(--clr-red);
+        transition: 0.2s all ease-in;
+        font-weight: 500;
+    }
+    .btn--red:hover,
+    .btn--red:focus {
+        background-color: #fff;
+        color: var(--clr-red);
+        border: 2px solid var(--clr-red);
+    }
     .col-2 {
         display: grid;
         grid-template-columns: 45% 55%;
@@ -558,15 +621,23 @@ a {
     .nav {
         margin-bottom: 2rem;
     }
+    .nav-link {
+        transition: 0.2s color ease-in;
+    }
+    .nav-link:hover {
+        color: var(--clr-red);
+    }
     .header-image {
         order: 1;
-        height: 450px;
+        height: clamp(450px, 50vh, 600px);
         width: 100%;
         object-fit: cover;
         margin-bottom: 0;
     }
     .header-image img {
         height: 100%;
+        width: 100%;
+        object-fit: contain;
     }
 
     .header-pattern {
@@ -599,6 +670,11 @@ a {
     .tabbed-btn {
         padding: 1rem 2rem;
         color: var(--clr-gray-1);
+        transition: 0.2s color ease-in;
+    }
+    .tabbed-btn:hover,
+    .tabbed-btn:focus {
+        color: var(--clr-red);
     }
     .tabbed-btn--active {
         color: var(--clr-gray-2);
@@ -610,7 +686,7 @@ a {
         display: grid;
     }
     .feature-image {
-        max-height: 350px;
+        height: clamp(350px, 35vh, 500px);
     }
     .feature-image img {
         width: 100%;
@@ -620,7 +696,7 @@ a {
     }
     .feature-image .header-pattern {
         width: 45vw;
-        height: 350px;
+        height: clamp(350px, 35vh, 500px);
     }
     .feature-desc {
         padding: 3rem 1rem;
@@ -631,6 +707,7 @@ a {
     }
     .download-cards {
         flex-direction: row;
+        justify-content: center;
         align-items: flex-start;
     }
     .card:nth-of-type(2) {
@@ -643,7 +720,15 @@ a {
     /* FAQ Start */
     .accordion {
     }
+    .accordion-btn span {
+        transition: 0.2s color ease-in;
+    }
+    .accordion-btn:hover span,
+    .accordion-btn:focus span {
+        color: var(--clr-red);
+    }
     /* FAQ End */
+
     /* Footer Start */
     .footer {
         display: flex;
@@ -658,9 +743,21 @@ a {
     }
     .footer-link {
         color: var(--clr-gray-1);
+        transition: 0.2s color ease-in;
+    }
+    .footer-link:hover,
+    .footer-link:active {
+        color: var(--clr-red);
     }
     .social-links {
         margin-left: auto;
+    }
+    .social-link {
+    }
+    .social-link:hover,
+    .social-link:active {
+        filter: brightness(0) saturate(100%) invert(44%) sepia(53%) saturate(2614%) hue-rotate(330deg)
+            brightness(104%) contrast(94%);
     }
     /* Footer End */
 }
@@ -670,15 +767,12 @@ a {
 /* Keyframes Starts */
 
 @keyframes move-right {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
     to {
         transform: translateX(0);
         opacity: 1;
     }
 }
+
 /* Keyframes Ends */
 /* Utils Starts */
 .show {

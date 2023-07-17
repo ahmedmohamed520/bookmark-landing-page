@@ -12,12 +12,18 @@ const App = () => {
     const emailRef = useRef(null);
     const [activeAccordion, setActiveAccordion] = useState(1);
     const [activeTab, setActiveTab] = useState(1);
+    const [emailError, setEmailError] = useState(false);
     let isEmailValid = true;
 
     const formSubmitHandler = (e) => {
         e.preventDefault();
         const emailValue = emailRef.current.value;
         isEmailValid = validateEmail(emailValue);
+        if (!isEmailValid) {
+            return setEmailError(true);
+        }
+        emailRef.current.value = "";
+        setEmailError(false);
     };
     return (
         <div>
@@ -120,7 +126,7 @@ const App = () => {
                     </div>
 
                     <form onSubmit={formSubmitHandler} className="subscription-form">
-                        <div className="form-control">
+                        <div className={`form-control ${emailError ? "error" : ""}`}>
                             <input placeholder="Enter your email address" ref={emailRef} type="text" />
                             <p>Whoops, make sure it's an email</p>
                         </div>
